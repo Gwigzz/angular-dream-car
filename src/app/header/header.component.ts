@@ -7,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent{
 
+  // Title
+  title = `Dream Car`;
+
+  getTitle(){
+    return this.title;
+  }
+
   constructor() { }
 
 
