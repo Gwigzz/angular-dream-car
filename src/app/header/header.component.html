@@ -5,7 +5,26 @@
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <!-- Search bar -->
+      <div class="text-white box-search-bar">
+        <div class="d-flex">
+          <form [formGroup]="searchBar">
+            <input (input)="onSearchSubmit()" class="form-control me-2 w-50" type="text" formControlName="carName"
+              placeholder="Search cars">
+          </form>
+        </div>
+        <div>
+          <!-- resultat -->
+          <p *ngIf="initCar; else result">
+            {{ initCar.brand }}
+          </p>
+          <ng-template #result>Aucun résultat</ng-template>
+        </div>
+      </div>
+
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item text-white">
           <a class="nav-link text-white" aria-current="page" [routerLink]="['/home']">Garage</a>
@@ -28,12 +47,8 @@
             <a class="nav-link disabled">Disabled</a>
           </li>-->
       </ul>
-      <!--
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-        -->
+
+
     </div>
   </div>
 </nav>

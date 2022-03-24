@@ -1,7 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+// import { ActivatedRoute } from '@angular/router'; // off Activate route
 
 @Component({
   selector: 'app-dashboard',
@@ -10,48 +11,44 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  // Show Cars
-  cars = [
-    {
-      id: 0,
-      brand: 'Ferrari',
-      model: 'Fera 387R',
-      color: 'red'
-    },
-    {
-      id: 1,
-      brand: 'Peugoet',
-      model: 'Clio',
-      color: 'white'
-    },
-    {
-      id: 2,
-      brand: 'Laborghini',
-      model: 'Veneno',
-      color: 'black'
-    },
-  ];
 
-  initCar: any;
-
-  // Form Submit
-  onSubmitForm(form: NgForm): void { 
-    console.log(form.value);
-  }
+  // Initialise un group pour les champs du formulaire
+  vehiculeForm!: FormGroup;
 
   constructor(
-    private activatedRoute: ActivatedRoute
+    // private activatedRoute: ActivatedRoute 
+
+    // Instance de form builder
+    private formBuilder: FormBuilder
   ) { }
+
+  // Build form vehicule
+  initForm(): void {
+    this.vehiculeForm = this.formBuilder.group({
+      seller: ['', Validators.required, Validators.minLength(3)],
+      brand: '',
+      model: '',
+      description: '',
+      price: 0
+    });
+  }
+
+  // Form Submit
+  onSubmitForm(): void {
+    console.log(this.vehiculeForm.value);
+  }
 
   // List card from URL
   ngOnInit(): void {
     // console.log(this.activatedRoute.snapshot.paramMap.get('id'));
 
     // Get car id from URL
-    const carId = this.activatedRoute.snapshot.paramMap.get('id');
+    // const carId = this.activatedRoute.snapshot.paramMap.get('id'); // off Activate route
 
     // Search id in table + convesion "string" to "int"
-    this.initCar = this.cars.find(car => car.id === +<string>carId);
+    // this.initCar = this.cars.find(car => car.id === +<string>carId); // off Activate route
+
+    this.initForm();
 
   }
 

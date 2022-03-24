@@ -2,3 +2,14 @@
 
 // Import bootstrap css
 @import "~bootstrap/dist/css/bootstrap.min.css";
+
+/* Vos propres couleurs */
+$primary: rgb(100, 7, 250);
+$danger: rgb(243, 6, 6);
+$success: rgb(0, 255, 149);
+$warning: rgb(236, 144, 22);
+$info: rgb(18, 187, 238);
+
+$body-bg: rgb(233, 233, 233);
+
+@import "bootstrap";
